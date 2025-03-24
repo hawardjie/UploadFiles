@@ -1,0 +1,29 @@
+# application.yml
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/postsea?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        transaction:
+          jta:
+            platform: org.springframework.orm.jpa.vendor.SpringJtaPlatform
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 16MB
+      max-request-size: 16MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,transactions"
